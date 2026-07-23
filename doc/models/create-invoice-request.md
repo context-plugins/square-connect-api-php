@@ -1,0 +1,62 @@
+
+# Create Invoice Request
+
+Describes a `CreateInvoice` request.
+
+## Structure
+
+`CreateInvoiceRequest`
+
+## Fields
+
+| Name | Type | Tags | Description | Getter | Setter |
+|  --- | --- | --- | --- | --- | --- |
+| `idempotencyKey` | `?string` | Optional | A unique string that identifies the `CreateInvoice` request. If you do not<br>provide `idempotency_key` (or provide an empty string as the value), the endpoint<br>treats each request as independent.<br><br>For more information, see [Idempotency](https://developer.squareup.com/docs/working-with-apis/idempotency).<br><br>**Constraints**: *Maximum Length*: `128` | getIdempotencyKey(): ?string | setIdempotencyKey(?string idempotencyKey): void |
+| `invoice` | [`Invoice`](../../doc/models/invoice.md) | Required | Stores information about an invoice. You use the Invoices API to create and manage<br>invoices. For more information, see [Manage Invoices Using the Invoices API](https://developer.squareup.com/docs/invoices-api/overview). | getInvoice(): Invoice | setInvoice(Invoice invoice): void |
+
+## Example
+
+```php
+use SquareConnectAPILib\Models\Builders\CreateInvoiceRequestBuilder;
+use SquareConnectAPILib\Models\Builders\InvoiceBuilder;
+use SquareConnectAPILib\Models\Builders\InvoiceAcceptedPaymentMethodsBuilder;
+use SquareConnectAPILib\Models\Builders\InvoiceCustomFieldBuilder;
+use SquareConnectAPILib\ApiHelper;
+
+$createInvoiceRequest = CreateInvoiceRequestBuilder::init(
+    InvoiceBuilder::init()
+        ->acceptedPaymentMethods(
+            InvoiceAcceptedPaymentMethodsBuilder::init()
+                ->bankAccount(false)
+                ->card(false)
+                ->squareGiftCard(false)
+                ->build()
+        )
+        ->createdAt('created_at6')
+        ->customFields(
+            [
+                InvoiceCustomFieldBuilder::init()
+                    ->label('label2')
+                    ->placement('placement6')
+                    ->value('value4')
+                    ->build(),
+                InvoiceCustomFieldBuilder::init()
+                    ->label('label2')
+                    ->placement('placement6')
+                    ->value('value4')
+                    ->build(),
+                InvoiceCustomFieldBuilder::init()
+                    ->label('label2')
+                    ->placement('placement6')
+                    ->value('value4')
+                    ->build()
+            ]
+        )
+        ->deliveryMethod(ApiHelper::deserialize('{"key1":"val1","key2":"val2"}'))
+        ->description('description4')
+        ->build()
+)
+    ->idempotencyKey('idempotency_key8')
+    ->build();
+```
+

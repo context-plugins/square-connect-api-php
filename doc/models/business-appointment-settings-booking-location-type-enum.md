@@ -1,0 +1,25 @@
+
+# Business Appointment Settings Booking Location Type Enum
+
+Types of location where service is provided.
+
+## Enumeration
+
+`BusinessAppointmentSettingsBookingLocationTypeEnum`
+
+## Fields
+
+| Name | Description |
+|  --- | --- |
+| `BUSINESS_LOCATION` | The service is provided at a seller location. |
+| `CUSTOMER_LOCATION` | The service is provided at a customer location. |
+| `PHONE` | The service is provided over the phone. |
+
+## Example
+
+```php
+use SquareConnectAPILib\Models\BusinessAppointmentSettingsBookingLocationTypeEnum;
+
+$businessAppointmentSettingsBookingLocationType = BusinessAppointmentSettingsBookingLocationTypeEnum::BUSINESS_LOCATION;
+```
+
